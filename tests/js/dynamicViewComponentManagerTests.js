@@ -29,7 +29,7 @@
         modules: [{
             name: "Test the sjrk.dynamicViewComponentManager component.",
             tests: [{
-                expect: 3,
+                expect: 4,
                 name: "Test dynamic component container addition and deletion.",
                 sequence: [{
                     listener: "sjrk.dynamicViewComponentManagerTester.testInit",
@@ -51,9 +51,17 @@
     };
 
     sjrk.dynamicViewComponentManagerTester.testComponentContainerAppended = function (that) {
+
         jqUnit.assert("viewComponentRegisteredWithManager event fired");
+
         var registerToArray = fluid.hashToArray(that.managedViewComponentRegistry, "componentContainerIndividualClass");
+
         jqUnit.assertEquals("managedViewComponentRegistry length is 1", 1, registerToArray.length);
+
+        var managedViewComponents = that.locate("managedViewComponents");
+
+        jqUnit.assertEquals("number of managedViewComponent elements is 1", 1, managedViewComponents.length);
+
     };
 
     fluid.defaults("sjrk.dynamicViewComponentManagerTests", {

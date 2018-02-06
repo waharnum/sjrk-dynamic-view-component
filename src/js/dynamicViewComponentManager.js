@@ -6,6 +6,9 @@
 
     fluid.defaults("sjrk.dynamicViewComponentManager", {
         gradeNames: ["fluid.viewComponent"],
+        selectors: {
+            managedViewComponents: ".sjrk-dynamic-view-component"
+        },
         events: {
             viewComponentContainerRequested: null,
             viewComponentContainerAppended: null,
