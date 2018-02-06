@@ -15,7 +15,8 @@
             viewComponentCreated: null,
             viewComponentRegisteredWithManager: null,
             viewComponentDestroyed: null,
-            viewComponentContainerRemoved: null
+            viewComponentContainerRemoved: null,
+            viewComponentDeregisteredWithManager: null
         },
         members: {
             // key: compent individual class
@@ -64,6 +65,10 @@
             "viewComponentDestroyed.removeComponentContainer": {
                 "funcName": "sjrk.dynamicViewComponentManager.removeComponentContainer",
                 "args": ["{that}", "{arguments}.0", "{arguments}.1", "{that}.events.viewComponentContainerRemoved"]
+            },
+            "viewComponentContainerRemoved.deregisterManagedViewComponent": {
+                func: "sjrk.dynamicViewComponentManager.deregisterManagedViewComponent",
+                args: ["{that}", "{arguments}.0", "{dynamicViewComponentManager}.events.viewComponentDeregisteredWithManager"]
             }
         }
     });
@@ -73,6 +78,15 @@
         var componentContainerIndividualClass = managedComponent.options.managedViewComponentDetails.containerIndividualClass;
 
         that.managedViewComponentRegistry[componentContainerIndividualClass] = managedComponent;
+
+        completionEvent.fire();
+    };
+
+    sjrk.dynamicViewComponentManager.deregisterManagedViewComponent = function (that, managedComponentIndividualClass, completionEvent) {
+        var managedViewComponentRegistry = that.managedViewComponentRegistry;
+        fluid.remove_if(managedViewComponentRegistry, function (component, key) {
+            return key === managedComponentIndividualClass;
+        });
 
         completionEvent.fire();
     };
