@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script src="../../node_modules/infusion/dist/infusion-all.js"></script>
+
+        <script src="../../src/js/dynamicViewComponentManager.js"></script>
+
+        <script src="src/js/todo.js"></script>
+
+        <link rel="stylesheet" media="screen" href="src/css/todo.css" />
+
+        <title>sjrk.dynamicViewComponentManager - todo demo</title>
+    </head>
+    <body id="body">
+        <h1>To-Do List</h1>
+        <div class="sjrkc-todo-controls sjrk-todo-controls">
+        </div>
+
+        <div class="sjrkc-todo-list sjrk-todo-list">
+        </div>
+
+    <script>
+        $(document).ready(function() {
+            sjrk.dynamicViewComponentManager.demos.todo.app();
+        });
+    </script>
+
+    </body>
+</html>
